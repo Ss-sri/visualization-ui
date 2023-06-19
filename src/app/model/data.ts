@@ -1,7 +1,7 @@
 export interface Data {
     _id: string;
     end_year: number;
-    intensity: string;
+    intensity: number;
     sector: string;
     topic: string;
     insight: string;
@@ -12,6 +12,7 @@ export interface Data {
     published: string;
     city: string;
     country: string;
+    region: string;
     relevance: string;
     pestle: string;
     source: string;

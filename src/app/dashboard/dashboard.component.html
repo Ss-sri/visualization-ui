@@ -1,11 +1,27 @@
 <div class="container">
-    <div class="filters">
-        <h1>Filters</h1>
+    <div class="filters" *ngIf="data.length > 0">
+        <app-filters [data]="data" [filters]="filters" [onFilterChange]="onFilterChange"></app-filters>
     </div>
-    <div class="charts">
-        <h1>Charts</h1>
-        <div *ngIf="pieChartData.length > 0">
-            <app-pie-chart [data]="pieChartData"></app-pie-chart>
-        </div>
+    <div class="charts-container">
+      <div class="chart">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Available Data in Countries</mat-card-title>
+          </mat-card-header>
+          <div *ngIf="pieChartData.length > 0">
+              <app-pie-chart [data]="pieChartData"></app-pie-chart>
+          </div>
+        </mat-card>
+      </div>
+      <div class="chart">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Intensity Vs Sector</mat-card-title>
+          </mat-card-header>
+          <div *ngIf="barChartData.length > 0">
+              <app-bar-chart [data]="barChartData"></app-bar-chart>
+          </div>
+        </mat-card>
+      </div>
     </div>
 </div>

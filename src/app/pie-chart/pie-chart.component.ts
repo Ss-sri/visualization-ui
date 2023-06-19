@@ -31,6 +31,11 @@ export class PieChartComponent implements OnInit{
           }]
       },
       options: {
+        plugins: {
+          legend: {
+            position: 'right'
+          }
+        },
           scales: {
               y: {
                   beginAtZero: true

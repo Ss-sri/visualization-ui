@@ -1,0 +1,10 @@
+.date-container {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.date-container input {
+  width: 100%;
+  padding: 10px;
+}

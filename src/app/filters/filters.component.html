@@ -1,0 +1,67 @@
+<div class="filter-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Filters</mat-card-title>
+    </mat-card-header>
+  <mat-accordion multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>End Year</mat-expansion-panel-header>
+      <mat-select multiple placeholder="Select years" [(ngModel)]="filters.endYear" (ngModelChange)="onFilterChange()">
+        <mat-option *ngFor="let year of end_years" [value]="year">{{year}}</mat-option>
+      </mat-select>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>Topics ({{topics.length}})</mat-expansion-panel-header>
+      <div *ngFor="let topic of topics">
+        <mat-checkbox *ngIf="topic" (change)="onTopicChange($event.checked, topic)">{{topic}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>Sector ({{sectors.length}})</mat-expansion-panel-header>
+      <div *ngFor="let sector of sectors">
+        <mat-checkbox *ngIf="sector" (change)="onSectorChange($event.checked, sector)">{{sector}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>Region ({{regions.length}})</mat-expansion-panel-header>
+      <div *ngFor="let region of regions">
+        <mat-checkbox *ngIf="region" (change)="onRegionChange($event.checked, region)">{{region}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>PEST ({{pests.length}})</mat-expansion-panel-header>
+      <div *ngFor="let pest of pests">
+        <mat-checkbox *ngIf="pest" (change)="onPestChange($event.checked, pest)">{{pest}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>SWOT ({{swots.length}})</mat-expansion-panel-header>
+      <div *ngFor="let swot of swots">
+        <mat-checkbox *ngIf="swot" (change)="onSwotChange($event.checked, swot)">{{swot}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>Country ({{countries.length}})</mat-expansion-panel-header>
+      <div *ngFor="let country of countries">
+        <mat-checkbox *ngIf="country" (change)="onCountryChange($event.checked, country)">{{country}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>City ({{cities.length}})</mat-expansion-panel-header>
+      <div *ngFor="let city of cities">
+        <mat-checkbox *ngIf="city" (change)="onCityChange($event.checked, city)">{{city}}</mat-checkbox>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  </mat-card>
+</div>
+

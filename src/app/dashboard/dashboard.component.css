@@ -1,7 +1,18 @@
 .container {
     display: flex;
+    padding: 10px;
 }
 
 .filters {
     width: 300px;
+}
+
+.charts-container {
+  padding-left: 10px;
+  width: 100%;
+}
+
+.chart {
+  width: 100%;
+  padding-right: 5px;
 }
