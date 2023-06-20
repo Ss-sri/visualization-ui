@@ -11,7 +11,9 @@ import { DashboardFilter } from '../filters/filter.type';
 })
 export class DashboardComponent implements OnInit{
   data: Data[] = [];
-  isLoading = true;
+  filterData: Data[] = [];
+  isFilterLoading = true;
+  isDataLoading = true;
   dashboardReq: DashboardReq = {};
   pieChartData: {label: string, value: number}[] = [];
   barChartData: {label: string, data: {label: string, value: number}[]}[] = [];
@@ -28,16 +30,34 @@ export class DashboardComponent implements OnInit{
   };
   constructor(private readonly dashboardApiService: DashboardApiService){}
   ngOnInit(): void {
-    this.getDashbaordData();
+    this.getFilterData();
   }
 
   getDashbaordData = () => {
+    this.isDataLoading = true;
     this.dashboardApiService.getDashboardData(this.filters).subscribe(res => {
-      this.isLoading = false;
+      this.isDataLoading = false;
       console.log('res ::', res);
       this.data = res;
       this.pieChart(res);
       this.barChart(res);
+    });
+  }
+
+  getFilterData = () => {
+    this.isFilterLoading = true;
+    this.dashboardApiService.getDashboardData(this.filters).subscribe(res => {
+      console.log('res ::', res);
+      this.isFilterLoading = false;
+      this.filterData = res;
+      let counter = 0;
+      for(const data of res){
+        if(data.country && !this.filters.country.find(c => c == data.country) && counter < 6) {
+          this.filters.country.push(data.country);
+          counter ++;
+        }
+      };
+      this.getDashbaordData();
     });
   }
 
@@ -47,7 +67,7 @@ export class DashboardComponent implements OnInit{
     data.forEach(data => {
       const country = data.country ?? 'Other';
       const count: number = dataMap.get(country) ?? 0;
-      dataMap.set(country, count + 1);
+      dataMap.set(country, count + data.intensity);
     })
     for(let key of dataMap.keys()) {
       this.pieChartData.push({label: key, value: dataMap.get(key) ?? 0})

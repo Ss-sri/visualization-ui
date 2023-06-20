@@ -15,7 +15,7 @@
     <mat-expansion-panel>
       <mat-expansion-panel-header>Topics ({{topics.length}})</mat-expansion-panel-header>
       <div *ngFor="let topic of topics">
-        <mat-checkbox *ngIf="topic" (change)="onTopicChange($event.checked, topic)">{{topic}}</mat-checkbox>
+        <mat-checkbox *ngIf="topic" (change)="onTopicChange($event.checked, topic)" [checked]="filters.topic.indexOf(topic) > 0">{{topic}}</mat-checkbox>
       </div>
     </mat-expansion-panel>
 
@@ -48,17 +48,17 @@
       </div>
     </mat-expansion-panel>
 
-    <mat-expansion-panel>
+    <mat-expansion-panel expanded="true">
       <mat-expansion-panel-header>Country ({{countries.length}})</mat-expansion-panel-header>
       <div *ngFor="let country of countries">
-        <mat-checkbox *ngIf="country" (change)="onCountryChange($event.checked, country)">{{country}}</mat-checkbox>
+        <mat-checkbox *ngIf="country" (change)="onCountryChange($event.checked, country)" [checked]="filters.country.indexOf(country) > 0">{{country}}</mat-checkbox>
       </div>
     </mat-expansion-panel>
 
     <mat-expansion-panel>
       <mat-expansion-panel-header>City ({{cities.length}})</mat-expansion-panel-header>
       <div *ngFor="let city of cities">
-        <mat-checkbox *ngIf="city" (change)="onCityChange($event.checked, city)">{{city}}</mat-checkbox>
+        <mat-checkbox *ngIf="city" (change)="onCityChange($event.checked, city)" [checked]="filters.city.indexOf(city) > 0">{{city}}</mat-checkbox>
       </div>
     </mat-expansion-panel>
   </mat-accordion>
